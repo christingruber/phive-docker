@@ -1,4 +1,4 @@
-FROM php:7.4-alpine
+FROM php:8.1-alpine
 
 LABEL maintainer="Christin Gruber <c.gruber@touchdesign.de>"
 LABEL description="PHIVE docker image"
@@ -11,7 +11,7 @@ RUN curl -OLSs https://phar.io/releases/phive.phar \
     && curl -OLSs https://phar.io/releases/phive.phar.asc
 
 RUN apk -U add gnupg \
-	&& gpg --keyserver hkps.pool.sks-keyservers.net --recv-keys 0x9D8A98B29B2D5D79 \
+	&& gpg --keyserver hkps://keys.openpgp.org --recv-keys 0x6AF725270AB81E04D79442549D8A98B29B2D5D79 \
 	&& gpg --verify phive.phar.asc phive.phar \
 	&& rm phive.phar.asc \
 	&& chmod +x phive.phar \
